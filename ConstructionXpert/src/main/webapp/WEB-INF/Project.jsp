@@ -149,6 +149,7 @@
         <h2>Projets</h2>
         <input type="text" id="searchInput" class="form-control mb-3" placeholder="Rechercher des projets...">
         <button href="AjouterForm" id="addProjectBtn" class="addProjectBtn btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#projectModal">Ajouter un projet</button>
+        <a href="AjouterForm" class="btn btn-primary">Go</a>
         <div class="table-responsive">
             <table id="projectsTable" class="table table-striped rounded">
                 <thead>
@@ -205,4 +206,3 @@
 
 <!-- JavaScript Bootstrap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-<script src="
