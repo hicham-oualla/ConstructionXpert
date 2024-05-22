@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
 <table class="table table-dark">
@@ -20,12 +20,12 @@
     <c:forEach var="project" items="${model}">
 
         <tr>
-            <td>${model.}</td>
-            <td>${project.}</td>
             <td>${project.idProject}</td>
-            <td>${project.idProject}</td>
-            <td>${project.idProject}</td>
-            <td>${project.idProject}</td>
+            <td>${project.nom}</td>
+            <td>${project.description}</td>
+            <td>${project.dateDebut}</td>
+            <td>${project.dateFin}</td>
+            <td>${project.budget}</td>
         </tr>
     </c:forEach>
 </table>
