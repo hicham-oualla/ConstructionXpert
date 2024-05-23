@@ -106,14 +106,6 @@
             background-color: #2e9ab2;
         }
 
-        .addProjectBtn {
-            background-color: #31A94D; /* Vert */
-            color: #fff;
-        }
-
-        .addProjectBtn:hover {
-            background-color: #218838;
-        }
 
         footer {
             background-color: #008DDA; /* Bleu Principal */
@@ -124,6 +116,26 @@
             bottom: 0;
             border-radius: 10px;
         }
+
+
+        .abtn-primary {
+            display: inline-block;
+            padding: 5px 10px; /* taille réduite du bouton */
+            color: #fff;
+            background-color: #008915;
+            border: none;
+            border-radius: 3px;
+            text-decoration: none; /* retirer le soulignement */
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* couleur du bouton au survol */
+        }
+
     </style>
 </head>
 <body>
@@ -148,13 +160,15 @@
     <section id="projects" class="mb-4">
         <h2>Projets</h2>
         <input type="text" id="searchInput" class="form-control mb-3" placeholder="Rechercher des projets...">
-        <button href="AjouterForm" id="addProjectBtn" class="addProjectBtn btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#projectModal">Ajouter un projet</button>
-        <a href="AjouterForm" class="btn btn-primary">Go</a>
+
+
+        <a href="AjouterForm" class="abtn-primary">Ajouter projet</a>
+
+
         <div class="table-responsive">
             <table id="projectsTable" class="table table-striped rounded">
                 <thead>
                 <tr>
-                    <th>ID du Projet</th>
                     <th>Nom du projet</th>
                     <th>Description</th>
                     <th>Date de Début</th>
@@ -165,23 +179,22 @@
                 </thead>
                 <tbody>
                 <c:forEach var="project" items="${model}">
-                <tr>
-                    <td>${project.idProject}</td>
-                    <td>${project.nom}</td>
-                    <td>${project.description}</td>
-                    <td>${project.dateDebut}</td>
-                    <td>${project.dateFin}</td>
-                    <td>${project.budget}</td>
-                    <td>
+                    <tr>
+                        <td>${project.nom}</td>
+                        <td>${project.description}</td>
+                        <td>${project.dateDebut}</td>
+                        <td>${project.dateFin}</td>
+                        <td>${project.budget}</td>
+                        <td>
 
-                        <button class="viewBtn btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>
-                        <button class="updateBtn btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#projectModal"> <i class="fas fa-edit"></i></button>
-                        <form action="deleteProject" method="post" style="display:inline;">
-                            <input type="hidden" name="projectId" value="1">
-                            <button type="submit" class="deleteBtn btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
-                        </form>
-                    </td>
-                </tr>
+                            <button class="viewBtn btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>
+                            <button class="updateBtn btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#projectModal"> <i class="fas fa-edit"></i></button>
+                            <form action="delete?id=${project.idProject}" method="post" style="display:inline;">
+                                <input type="hidden" name="projectId" value="1">
+                                <button type="submit" class="deleteBtn btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                            </form>
+                        </td>
+                    </tr>
                 </c:forEach>
 
                 </tbody>
