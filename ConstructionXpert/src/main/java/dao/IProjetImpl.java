@@ -78,6 +78,16 @@ public class IProjetImpl implements IProjet{
 
     @Override
     public void deleteProject(int projet_id) {
+        String deleteSQL = "DELETE FROM project WHERE id_project = ?";
 
+        try (Connection connection = Dbconnexion.getConnection();
+             PreparedStatement ps = connection.prepareStatement(deleteSQL)) {
+
+            ps.setInt(1, projet_id);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
