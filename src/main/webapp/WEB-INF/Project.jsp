@@ -190,7 +190,7 @@
 
                             <button class="viewBtn btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></button>
                             <form action="updateForm?id=${project.idProject}" method="post" style="display:inline;">
-                                <input type="hidden" name="projectId" value=${project.idProject}>
+                                <input type="hidden" name="projectId" value="1">
                                 <button class="updateBtn btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#projectModal"> <i class="fas fa-edit"></i></button>
 
                             </form>
