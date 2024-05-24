@@ -10,6 +10,7 @@ import metier.Project;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 public class controlleurServlet extends HttpServlet {
@@ -45,6 +46,12 @@ public class controlleurServlet extends HttpServlet {
                     break;
                 case "/delete":
                     Delete(req, resp);
+                    break;
+                case "/updateForm":
+                    UpdateForm(req, resp);
+                    break;
+                case "/Modifier":
+                    Update(req, resp);
                     break;
                 default:
                     Home(req, resp);
@@ -82,6 +89,26 @@ public class controlleurServlet extends HttpServlet {
         metier.deleteProject(id);
         resp.sendRedirect(req.getContextPath() + "/home");
     }
+    private void UpdateForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Project project = metier.getProject(id);
+        req.setAttribute("project", project);
+        req.getRequestDispatcher("/WEB-INF/modifier_projet.jsp").forward(req, resp);
+    }
 
+    private void Update(HttpServletRequest req, HttpServletResponse resp) throws IOException, SQLException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        String nom = req.getParameter("nom");
+        String description = req.getParameter("description");
+        Date dateDebut = Date.valueOf(req.getParameter("dateDebut"));
+        Date dateFin = Date.valueOf(req.getParameter("dateFin"));
+        double budget = Double.parseDouble(req.getParameter("budget"));
 
+        Project updatedProject = new Project(nom, description, dateDebut, dateFin, budget);
+        metier.updateProject(id,updatedProject);
+        resp.sendRedirect(req.getContextPath() + "/home");
+    }
 }
+
+
+

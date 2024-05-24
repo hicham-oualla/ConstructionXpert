@@ -72,8 +72,27 @@ public class IProjetImpl implements IProjet{
     }
 
     @Override
-    public Project updateProject(Project p) {
-        return null;
+    public Project updateProject(int id,Project p) {
+        String updateSQL = "UPDATE project SET nom = ?, description = ?, datedebut = ?, datefin = ?, budget = ? WHERE id_project = ?";
+
+        try (
+                Connection connection = Dbconnexion.getConnection();
+                PreparedStatement ps = connection.prepareStatement(updateSQL))
+
+        {
+
+            ps.setString(1, p.getNom());
+            ps.setString(2, p.getDescription());
+            ps.setDate(3, p.getDateDebut());
+            ps.setDate(4, p.getDateFin());
+            ps.setDouble(5, p.getBudget());
+            ps.setInt(6, id);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return p;
     }
 
     @Override
